@@ -52,8 +52,8 @@ function simpleScorer(word){
 
 function vowelBonusScorer(word){
    word = word.toUpperCase();
-   let letterPoints = '';
-   let points = {
+ 
+    let points = {
       1: ['B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','Y','Z'],
       3: ['A','E','I','O','U']
    };
@@ -61,11 +61,11 @@ function vowelBonusScorer(word){
      for (let i=0;i<word.length;i++){
        for(let value in points){
          if(points[value].includes(word[i])){
-           letterPoints+= `Points for '${word[i]}': ${value} \n`; 
+         console.log(`Points for '${word[i]}': ${value}`); 
          }
        }
      }
-     return letterPoints;
+ 
 }
      
 
