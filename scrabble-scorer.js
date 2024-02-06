@@ -35,13 +35,39 @@ let userAnswer = '';
 
 function initialPrompt() { 
    userAnswer=  input.question("Let's play some scrabble! \n Enter a word: ");
-   console.log(oldScrabbleScorer(userAnswer));
+   console.log(vowelBonusScorer(userAnswer));
 }
 
+////////////// TASK 2 //////////
 
-let simpleScorer;
+function simpleScorer(word){
+ for (let i = 0; i < word.length; i){ 
+      break;
+      } 
+      return word.length;
+   }
 
-let vowelBonusScorer;
+
+  
+
+function vowelBonusScorer(word){
+   word = word.toUpperCase();
+   let letterPoints = '';
+   let points = {
+      1: ['B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','Y','Z'],
+      3: ['A','E','I','O','U']
+   };
+     
+     for (let i=0;i<word.length;i++){
+       for(let value in points){
+         if(points[value].includes(word[i])){
+           letterPoints+= `Points for '${word[i]}': ${value} \n`; 
+         }
+       }
+     }
+     return letterPoints;
+}
+     
 
 let scrabbleScorer;
 
