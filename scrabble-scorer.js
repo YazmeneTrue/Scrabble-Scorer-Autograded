@@ -35,7 +35,6 @@ let userAnswer = '';
 
 function initialPrompt() { 
    userAnswer=  input.question("Let's play some scrabble! \n Enter a word: ");
-   console.log(scorerPrompt());
 }
 
 ////////////// TASK 2 //////////
@@ -99,6 +98,10 @@ let newPointStructure;
 
 function runProgram() {
    initialPrompt();
+   let scoreObject = scorerPrompt()
+   let score = scoreObject.scorerFunction(userAnswer);
+   
+   console.log(`Score for '${userAnswer} : ${score}`);
 
 }
 
