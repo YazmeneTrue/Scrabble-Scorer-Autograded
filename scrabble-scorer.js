@@ -62,6 +62,17 @@ function vowelBonusScorer (word){
  }
   return score; 
 }
+
+function scrabbleScorer(word){
+  word = word.toUpperCase();
+  let score = 0;
+  for(let i=0;i<word.length;i++){
+    if (newPointStructure.hasOwnProperty(word[i])){
+      score += newPointStructure[word[i]][key]; console.log(`Points for '${word[i]}': ${newPointStructure[word[i]][key]}`)
+    } else console.log(`Points for '${word[i]}': ${newPointStructure[i]}`)
+  } 
+  return score
+};
 // making objects with the functions in them     
 let vowelBonusObj = {
   name : "Bonus Vowels",
@@ -76,9 +87,9 @@ let simpleScoreObj = {
 let ScrabbleObj ={
   name :"Scrabble",
   description : "The traditional scoring algorithm.",
-  scorerFunction : oldScrabbleScorer
+  scorerFunction : scrabbleScorer
 }
-let scrabbleScorer;
+
 const scoringAlgorithms = [simpleScoreObj,vowelBonusObj,ScrabbleObj];
 
 function scorerPrompt() {
@@ -92,16 +103,27 @@ function scorerPrompt() {
    return scoringAlgorithms[scoreChoice];
 }
 
-function transform() {};
+function transform(oldPointStructure) {
+  let fixedStructure = {};
+  for(let key in oldPointStructure){
+    let letters = oldPointStructure[key];
+    for(let i=0;i<letters.length;i++){
+      let letterIndex = letters[i].toLowerCase();
+      fixedStructure[letterIndex] = Number(key);
 
-let newPointStructure;
+    }
+  }
+   return fixedStructure;
+}
+
+let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
    initialPrompt();
    let scoreObject = scorerPrompt()
    let score = scoreObject.scorerFunction(userAnswer);
    
-   console.log(`Score for '${userAnswer} : ${score}`);
+   console.log(`Score for '${userAnswer}': ${score}`);
 
 }
 
